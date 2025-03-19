@@ -1,7 +1,9 @@
 from flask import Flask, render_template, jsonify
+from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
+CORS(app)  # Mengizinkan akses dari frontend
 
 API_BASE_URL = "http://192.168.56.104:5000/api"
 
@@ -30,6 +32,12 @@ def get_data():
         "karbonmonoksida": get_sensor_data("karbonmonoksida"),
     }
     return jsonify(data)  # JavaScript akan mengambil data ini setiap 2 detik
+
+@app.route("/api/telur")
+def get_telur():
+    """Mengambil data produksi telur dari API eksternal"""
+    telur_data = get_sensor_data("telur")
+    return jsonify(telur_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
