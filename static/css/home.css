@@ -1,44 +1,44 @@
-/* Mengatur tinggi viewport agar tidak scroll di halaman */
+/* Reset dasar */
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
+    overflow: hidden; /* Menghindari scroll global */
 }
 
 /* Container utama: 3 kolom */
 .main-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Tiga kolom */
-    gap: 8px; /* Lebih kecil agar compact */
-    height: calc(100vh - 100px); /* Sisakan ruang ~100px untuk header & navbar */
+    grid-template-columns: 1fr 1fr 1fr; /* Tiga kolom: kiri, tengah, kanan */
+    gap: 8px; /* Jarak antar kolom lebih kecil */
+    height: calc(100vh - 100px); /* Sisakan ~100px untuk header & navbar */
     padding: 8px;
     box-sizing: border-box;
-    overflow: hidden; /* Hindari scroll di container utama */
 }
 
-/* Bagian Kiri: Grafik & Kartu Statistik */
+/* Kolom Kiri: Grafik & Kartu Statistik */
 .left-section {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    overflow: auto; /* Jika konten lebih, scroll hanya di kolom ini */
+    overflow: auto; /* Scroll khusus jika konten melebihi tinggi */
 }
 
-/* Bagian Tengah: Kondisi Ayam, Kontrol Pakan, Manual, Persediaan Pakan */
+/* Kolom Tengah: Kondisi Ayam, Kontrol Pakan, Manual, Persediaan */
 .middle-section {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    overflow: auto; /* Jika konten lebih, scroll hanya di kolom ini */
+    overflow: auto; /* Scroll khusus jika konten melebihi tinggi */
 }
 
-/* Bagian Kanan: Kontrol Perangkat */
+/* Kolom Kanan: Kontrol Perangkat */
 .right-section {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    overflow: auto; /* Jika konten lebih, scroll hanya di kolom ini */
+    overflow: auto; /* Scroll khusus jika konten melebihi tinggi */
 }
 
 /* Grafik Produksi Telur */
@@ -47,15 +47,16 @@ html, body {
     padding: 10px;
     border-radius: 6px;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-    min-height: 0; /* Agar flexbox tidak memaksa tinggi berlebih */
+    flex: 1;
 }
 
-/* Stats Container */
+/* Kartu Statistik */
 .stats-container {
     background: #fff;
     padding: 10px;
     border-radius: 6px;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
 }
 
 .stats-container h2 {
@@ -69,6 +70,7 @@ html, body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 6px;
+    flex: 1;
 }
 
 .card {
@@ -93,7 +95,7 @@ html, body {
     margin: 6px 0;
 }
 
-/* Status warna */
+/* Status warna pada kartu statistik */
 .status {
     font-size: 12px;
     font-weight: bold;
@@ -103,63 +105,52 @@ html, body {
 }
 
 .normal {
-    color: green;
-    background-color: #DFF2BF;
+    color: green !important;
+    background-color: #DFF2BF !important;
     border: 1px solid green;
 }
 
 .high {
-    color: white;
-    background-color: red;
-    border: 1px solid black;
+    color: white !important;
+    background-color: red !important;
+    border: 1px solid black !important;
 }
 
 .low {
-    color: white;
-    background-color: #3498db;
+    color: white !important;
+    background-color: #3498db !important;
     border: 1px solid darkblue;
 }
 
 .danger {
-    color: white;
-    background-color: red;
-    border: 1px solid black;
+    color: white !important;
+    background-color: red !important;
+    border: 1px solid black !important;
 }
 
-/* Kondisi Ayam, Kontrol Pakan, Manual, Persediaan */
-.kondisi-ayam-container,
-.kontrol-pakan-container,
-.manual-kontrol-container,
-.persediaan-pakan-container {
+/* Kondisi Ayam (Kolom Tengah) - versi lebih ringkas */
+.kondisi-ayam-container {
     background: #fff;
     padding: 10px;
     border-radius: 6px;
+    border: 1px solid #ddd;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: all 0.3s ease-in-out;
 }
 
-.kondisi-ayam-container {
-    background: linear-gradient(135deg, #ffffff, #f8f8f8);
-    border: 1px solid #ddd;
-}
-
-.kondisi-ayam-container:hover {
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.kondisi-ayam-container h3,
-.kontrol-pakan-container h3,
-.manual-kontrol-container h3,
-.persediaan-pakan-container h3 {
-    font-size: 16px;
+.kondisi-ayam-container h3 {
+    font-size: 14px;
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    color: #333;
 }
 
 .kondisi-ayam {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 6px;
+    align-items: center;
+    margin-bottom: 4px;
 }
 
 .kondisi-ayam .emoji {
@@ -167,10 +158,47 @@ html, body {
     margin-right: 4px;
 }
 
-.total-ayam {
-    font-size: 18px;
+.kondisi-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
     font-weight: bold;
-    margin-top: 6px;
+    gap: 4px;
+}
+
+.ayam-sehat {
+    color: green;
+}
+
+.ayam-sakit {
+    color: red;
+}
+
+.total-ayam {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 4px;
+    color: #222;
+}
+
+.kondisi-ayam-container:hover {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Kontrol Pakan (Kolom Tengah) */
+.kontrol-pakan-container {
+    background: #f4c678;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.kontrol-pakan-container h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #222;
 }
 
 .kontrol-pakan {
@@ -181,8 +209,9 @@ html, body {
 
 .kontrol-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    width: 90%;
     background: #fff;
     padding: 6px 8px;
     border-radius: 4px;
@@ -213,8 +242,27 @@ html, body {
     transition: 0.3s;
 }
 
+.kontrol-button.nonaktif {
+    background: #dc3545;
+}
+
 .kontrol-button:hover {
     opacity: 0.8;
+}
+
+/* Manual Kontrol (Kolom Tengah) */
+.manual-kontrol-container {
+    background: #ffcccc;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.manual-kontrol-container h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
 }
 
 .manual-kontrol-options {
@@ -246,13 +294,24 @@ html, body {
     background-color: #e65c00;
 }
 
+/* Persediaan Pakan (Kolom Tengah) */
 .persediaan-pakan-container {
     background: #dff6f0;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.persediaan-pakan-container h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
 }
 
 .persediaan-pakan-container p {
     font-size: 14px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .progress-bar-container {
@@ -261,7 +320,7 @@ html, body {
     border-radius: 5px;
     overflow: hidden;
     height: 18px;
-    margin-top: 6px;
+    margin-top: 4px;
 }
 
 .progress-bar {
@@ -274,7 +333,7 @@ html, body {
     transition: width 0.5s ease-in-out;
 }
 
-/* Device Control (Kolom Kanan) */
+/* Kontrol Perangkat (Kolom Kanan) */
 .device-control {
     background: #f8f9fa;
     padding: 10px;
@@ -284,9 +343,9 @@ html, body {
 }
 
 .device-control h3 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .device {
@@ -330,8 +389,8 @@ html, body {
 /* Responsif untuk layar kecil */
 @media (max-width: 768px) {
     .main-container {
-        grid-template-columns: 1fr;
-        height: auto; /* Agar tidak memotong di layar kecil */
+        grid-template-columns: 1fr; /* Satu kolom pada layar kecil */
+        height: auto; /* Biar tidak terpotong di bawah */
         overflow: auto;
     }
 }
