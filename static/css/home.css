@@ -4,20 +4,20 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
-    overflow: hidden; /* Menghindari scroll global */
+    overflow: hidden; /* Hindari scroll global */
 }
 
-/* Container Utama: 3 Kolom */
+/* Container utama: 3 kolom */
 .main-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Tiga kolom: kiri, tengah, kanan */
+    grid-template-columns: 1fr 1fr 1fr; /* Kolom kiri, tengah, kanan */
     gap: 8px;
-    height: calc(100vh - 100px); /* Sisakan ruang ~100px untuk header & navbar */
+    height: calc(100vh - 100px); /* Sisakan ~100px untuk header & navbar */
     padding: 8px;
     box-sizing: border-box;
 }
 
-/* Kolom Kiri: Grafik & Kartu Statistik */
+/* Kolom Kiri */
 .left-section {
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@ html, body {
     overflow: auto;
 }
 
-/* Kolom Tengah: Kondisi Ayam, Kontrol Pakan, Manual, Persediaan Pakan */
+/* Kolom Tengah */
 .middle-section {
     display: flex;
     flex-direction: column;
@@ -33,16 +33,52 @@ html, body {
     overflow: auto;
 }
 
-/* Kolom Kanan: CCTV & Kontrol Perangkat */
+/* Kolom Kanan */
 .right-section {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    overflow: auto;
+    overflow: hidden; /* Hilangkan scroll di right-section, kita akan atur di sub-element */
+    flex: 1;
 }
 
-/* --- Bagian Kiri --- */
-/* Grafik Produksi Telur */
+/* Pastikan CCTV punya tinggi tetap, Kontrol Perangkat isi sisa ruang */
+.cctv-container {
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    flex: 0 0 40%; /* 40% dari kolom kanan untuk CCTV */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.device-control {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    flex: 1; /* Isi sisa tinggi di kolom kanan */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Grid 2 kolom untuk device */
+.device-control-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    flex: 1; /* Penuhi area device-control */
+    overflow: auto; /* Scroll jika item melebihi */
+}
+
+/* Lain-lain (Chart, Stats, Card, dsb.) */
 .chart-container {
     background: #f9f9f9;
     padding: 10px;
@@ -51,7 +87,7 @@ html, body {
     flex: 1;
 }
 
-/* Kartu Statistik */
+/* Stats Container */
 .stats-container {
     background: #fff;
     padding: 10px;
@@ -96,6 +132,7 @@ html, body {
     margin: 6px 0;
 }
 
+/* Status warna pada card */
 .status {
     font-size: 12px;
     font-weight: bold;
@@ -105,30 +142,29 @@ html, body {
 }
 
 .normal {
-    color: green !important;
-    background-color: #DFF2BF !important;
+    color: green;
+    background-color: #DFF2BF;
     border: 1px solid green;
 }
 
 .high {
-    color: white !important;
-    background-color: red !important;
-    border: 1px solid black !important;
+    color: white;
+    background-color: red;
+    border: 1px solid black;
 }
 
 .low {
-    color: white !important;
-    background-color: #3498db !important;
-    border: 1px solid darkblue !important;
+    color: white;
+    background-color: #3498db;
+    border: 1px solid darkblue;
 }
 
 .danger {
-    color: white !important;
-    background-color: red !important;
-    border: 1px solid black !important;
+    color: white;
+    background-color: red;
+    border: 1px solid black;
 }
 
-/* --- Bagian Tengah --- */
 /* Kondisi Ayam */
 .kondisi-ayam-container {
     background: #fff;
@@ -138,6 +174,10 @@ html, body {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: all 0.3s ease-in-out;
+}
+
+.kondisi-ayam-container:hover {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .kondisi-ayam-container h3 {
@@ -167,23 +207,11 @@ html, body {
     gap: 4px;
 }
 
-.ayam-sehat {
-    color: green;
-}
-
-.ayam-sakit {
-    color: red;
-}
-
 .total-ayam {
     font-size: 16px;
     font-weight: bold;
     margin-top: 4px;
     color: #222;
-}
-
-.kondisi-ayam-container:hover {
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Kontrol Pakan Otomatis */
@@ -243,10 +271,6 @@ html, body {
     transition: 0.3s;
 }
 
-.kontrol-button.nonaktif {
-    background: #dc3545;
-}
-
 .kontrol-button:hover {
     opacity: 0.8;
 }
@@ -276,12 +300,6 @@ html, body {
 .manual-kontrol-options label {
     font-size: 14px;
     font-weight: bold;
-    cursor: pointer;
-}
-
-.manual-kontrol-options input {
-    margin-right: 5px;
-    transform: scale(1.2);
     cursor: pointer;
 }
 
@@ -340,7 +358,6 @@ html, body {
     transition: width 0.5s ease-in-out;
 }
 
-/* --- Bagian Kanan --- */
 /* CCTV Container */
 .cctv-container {
     background: #fff;
@@ -348,6 +365,12 @@ html, body {
     border-radius: 6px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+
+    /* Pastikan CCTV punya tinggi fix agar sisanya ditempati Kontrol Perangkat */
+    flex: 0 0 40%; /* 40% tinggi dari .right-section */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 .cctv-container h3 {
@@ -378,13 +401,17 @@ html, body {
     object-fit: cover;
 }
 
-/* Device Control */
+/* Kontrol Perangkat (Kolom Kanan) */
 .device-control {
     background: #f8f9fa;
     padding: 10px;
     border-radius: 6px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1; /* Mengisi sisa tinggi kolom kanan (jika CCTV fix height) */
 }
 
 .device-control h3 {
@@ -393,27 +420,46 @@ html, body {
     margin-bottom: 4px;
 }
 
-.device {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f5f5f5;
-    padding: 6px 8px;
-    margin-bottom: 6px;
-    border-radius: 4px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+/* Grid 2 kolom untuk device */
+.device-control-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 kolom, 2 baris untuk 4 device */
+    gap: 8px;
+    flex: 1; /* Penuhi area device-control */
+    overflow: auto; /* Scroll jika item melebihi */
 }
 
+/* Setiap device - ikon, teks, tombol vertikal */
+.device {
+    display: flex;
+    flex-direction: column; /* Tumpuk secara vertikal */
+    align-items: center;    /* Pusatkan horizontal */
+    justify-content: center;/* Pusatkan vertical */
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    gap: 8px; /* Jarak antar ikon, teks, dan tombol */
+}
+
+/* Ikon device lebih besar */
+.device-icon {
+    font-size: 24px; /* Perbesar ikon */
+}
+
+/* Teks device */
 .device h4 {
-    font-size: 14px;
+    font-size: 16px; /* Lebih besar */
     font-weight: bold;
     margin: 0;
 }
 
+/* Tombol ON/OFF */
 .toggle-btn {
-    width: 60px;
-    padding: 4px;
-    font-size: 12px;
+    width: 70px;
+    padding: 6px 8px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     border: none;
@@ -431,7 +477,7 @@ html, body {
     opacity: 0.85;
 }
 
-/* Responsif untuk layar kecil */
+/* Responsif: layar kecil */
 @media (max-width: 768px) {
     .main-container {
         grid-template-columns: 1fr;
