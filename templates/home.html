@@ -28,10 +28,12 @@
             <h3>Kondisi Ayam</h3>
             <div class="kondisi-ayam">
                 <div class="kondisi-item ayam-sehat">
-                    <span class="emoji">🐔</span> <span style="color: green;">Ayam Sehat: <span id="ayamSehat">7</span> ekor</span>
+                    <span class="emoji">🐔</span>
+                    <span style="color: green;">Ayam Sehat: <span id="ayamSehat">7</span> ekor</span>
                 </div>
                 <div class="kondisi-item ayam-sakit">
-                    <span class="emoji">🤒</span> <span style="color: red;">Ayam Sakit: <span id="ayamSakit">8</span> ekor</span>
+                    <span class="emoji">🤒</span>
+                    <span style="color: red;">Ayam Sakit: <span id="ayamSakit">8</span> ekor</span>
                 </div>
             </div>
             <h2 id="totalAyam">15 EKOR</h2>
@@ -78,26 +80,55 @@
     </div>
 
     <!-- Bagian Kanan -->
-    <div class="right-section">
-        <div class="device-control">
-            <h3>Kontrol Perangkat</h3>
-            <div class="device">
-                <h4>🌀 Kipas</h4>
-                <button class="toggle-btn" id="kipas-btn">ON</button>
+<div class="right-section">
+
+    <!-- CCTV Container -->
+    <div class="cctv-container">
+        <h3>CCTV</h3>
+        <div class="cctv-grid">
+            <div class="cctv-item">
+                <video
+                        src="{{ url_for('static', filename='video/camera1.mp4') }}"
+                        controls
+                        autoplay
+                        loop
+                        muted
+                ></video>
             </div>
-            <div class="device">
-                <h4>💦 Fogging</h4>
-                <button class="toggle-btn" id="fogging-btn">ON</button>
-            </div>
-            <div class="device">
-                <h4>💡 Lampu</h4>
-                <button class="toggle-btn" id="lampu-btn">ON</button>
-            </div>
-            <div class="device">
-                <h4>🚿 Sprinkler</h4>
-                <button class="toggle-btn" id="sprinkler-btn">ON</button>
+            <div class="cctv-item">
+                <video
+                        src="{{ url_for('static', filename='video/camera2.mp4') }}"
+                        controls
+                        autoplay
+                        loop
+                        muted
+                ></video>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Kontrol Perangkat -->
+    <div class="device-control">
+        <h3>Kontrol Perangkat</h3>
+        <div class="device">
+            <h4>🌀 Kipas</h4>
+            <button class="toggle-btn" id="kipas-btn">ON</button>
+        </div>
+        <div class="device">
+            <h4>💦 Fogging</h4>
+            <button class="toggle-btn" id="fogging-btn">ON</button>
+        </div>
+        <div class="device">
+            <h4>💡 Lampu</h4>
+            <button class="toggle-btn" id="lampu-btn">ON</button>
+        </div>
+        <div class="device">
+            <h4>🚿 Sprinkler</h4>
+            <button class="toggle-btn" id="sprinkler-btn">ON</button>
+        </div>
+    </div>
+
+</div> <!-- Tutup right-section di sini, tidak sesudahnya -->
+</div> <!-- Hapus penutup div berlebih jika ada -->
+
 {% endblock %}
