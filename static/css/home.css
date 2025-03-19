@@ -1,3 +1,26 @@
+/* Grid utama untuk tata letak dua kolom */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Bagian kiri: Grafik dan Kartu Statistik */
+.left-section {
+    flex: 1;
+}
+
+/* Bagian kanan: Kondisi Ayam, Kontrol Pakan, dll. */
+.right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Grafik Produksi Telur */
 .chart-container {
     width: 100%;
     max-width: 600px;
@@ -36,8 +59,16 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
     text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
+/* Efek hover */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Header kartu */
 .card-header {
     background: #FFD966;
     padding: 8px;
@@ -48,10 +79,6 @@
     justify-content: center;
 }
 
-.card-header .icon {
-    margin-right: 5px;
-}
-
 /* Warna teks utama */
 .value {
     font-size: 24px;
@@ -60,6 +87,7 @@
     margin: 10px 0;
 }
 
+/* Status warna */
 .status {
     font-size: 16px;
     font-weight: bold;
@@ -67,7 +95,6 @@
     border-radius: 5px;
 }
 
-/* Status warna */
 .normal {
     color: green !important;
     background-color: #DFF2BF !important;
@@ -76,13 +103,13 @@
 
 .high {
     color: white !important;
-    background-color: red !important; /* Ubah jadi merah */
+    background-color: red !important;
     border: 2px solid black !important;
 }
 
 .low {
     color: white !important;
-    background-color: #3498db !important; /* Biru lebih kontras */
+    background-color: #3498db !important;
     border: 2px solid darkblue;
 }
 
@@ -92,9 +119,42 @@
     border: 2px solid black !important;
 }
 
-/* Responsif */
-@media (max-width: 600px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
+/* Bagian kanan: Kondisi Ayam, Kontrol Pakan, dll. */
+.kondisi-ayam {
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+}
+
+.ayam-sehat {
+    color: green;
+}
+
+.ayam-sakit {
+    color: red;
+}
+
+.jadwal-pakan {
+    background: #f7d794;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.manual-kontrol {
+    background: #ffcccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.persediaan-pakan {
+    background: #d1f2eb;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
     }
 }

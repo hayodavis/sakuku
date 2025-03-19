@@ -3,17 +3,54 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="{{ url_for('static', filename='js/script.js') }}" defer></script> <!-- Panggil script.js -->
+<script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
 
-<div class="chart-container">
-    <canvas id="eggProductionChart"></canvas>
-</div>
+<div class="main-container">
+    <!-- Bagian Kiri -->
+    <div class="left-section">
+        <div class="chart-container">
+            <canvas id="eggProductionChart"></canvas>
+        </div>
 
-<div class="stats-container">
-    <h2>KARTU STATISTIK</h2>
-    <div class="stats-grid" id="statsGrid">
-        <!-- Kartu akan di-generate oleh JavaScript -->
+        <div class="stats-container">
+            <h2>KARTU STATISTIK</h2>
+            <div class="stats-grid" id="statsGrid">
+                <!-- Kartu akan diisi oleh JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bagian Kanan -->
+    <div class="right-section">
+        <div class="card">
+            <h3>Kondisi Ayam</h3>
+            <div class="kondisi-ayam">
+                <p class="ayam-sehat">🐔 Ayam Sehat: <span id="ayamSehat">7</span> ekor</p>
+                <p class="ayam-sakit">🤒 Ayam Sakit: <span id="ayamSakit">8</span> ekor</p>
+            </div>
+            <h2 id="totalAyam">15 EKOR</h2>
+        </div>
+
+        <div class="card jadwal-pakan">
+            <h3>Kontrol Pakan Otomatis</h3>
+            <p>07:00 [ 2 Kg ] <span class="status normal">AKTIF</span></p>
+            <p>12:00 [ 1 Kg ] <span class="status normal">AKTIF</span></p>
+            <p>17:00 [ 2 Kg ] <span class="status normal">AKTIF</span></p>
+        </div>
+
+        <div class="card manual-kontrol">
+            <h3>Manual Kontrol Pakan</h3>
+            <label><input type="checkbox"> 1 Kilogram</label>
+            <label><input type="checkbox"> 2 Kilogram</label>
+            <label><input type="checkbox"> 5 Kilogram</label>
+            <button onclick="beriMakan()">Beri Makan Sekarang!</button>
+        </div>
+
+        <div class="card persediaan-pakan">
+            <h3>Persediaan Pakan</h3>
+            <p id="sisaPakan">Tersisa 15 Kilogram</p>
+            <h2>30%</h2>
+        </div>
     </div>
 </div>
-
 {% endblock %}
