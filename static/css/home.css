@@ -66,8 +66,8 @@
 
 .high {
     color: white !important;
-    background-color: #FF5733 !important; /* Merah terang */
-    border: 2px solid darkred;
+    background-color: red !important; /* Ubah jadi merah */
+    border: 2px solid black !important;
 }
 
 .low {

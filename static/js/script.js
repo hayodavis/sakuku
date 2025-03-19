@@ -23,18 +23,23 @@ function fetchData() {
     fetch("/api/data")
         .then(response => response.json())
         .then(data => {
-            console.log("Data API:", data); // Cek data yang diterima dari API
+            console.log("Data API:", data);
             statsGrid.innerHTML = "";
 
             Object.keys(data).forEach(key => {
                 const { kadar, status } = data[key];
 
-                console.log(`Key: ${key}, Status: ${status}`); // Debugging
+                console.log(`Key: ${key}, Kadar: ${kadar}, Status: ${status}`);
 
-                const statusClass = status.toUpperCase() === "BAHAYA" ? "danger" :
-                                    status === "TINGGI" ? "high" :
-                                    status === "RENDAH" ? "low" :
-                                    "normal";
+                let statusClass = "normal"; // Default
+                if (status.toUpperCase() === "BAHAYA") {
+                    statusClass = "danger"; // Warna merah untuk status "BAHAYA"
+                } else if (status.toUpperCase() === "TINGGI" || (key === "suhu" && kadar > 30)) {
+                    // Warna merah jika suhu > 30 derajat atau status tinggi
+                    statusClass = "high";
+                } else if (status.toUpperCase() === "RENDAH") {
+                    statusClass = "low";
+                }
 
                 const card = `
                     <div class="card">
@@ -52,6 +57,7 @@ function fetchData() {
         })
         .catch(error => console.error("Gagal mengambil data:", error));
 }
+
     fetchData(); // Panggil saat pertama kali halaman dimuat
     setInterval(fetchData, 2000); // Update setiap 2 detik
 });
