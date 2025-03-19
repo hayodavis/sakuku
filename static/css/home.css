@@ -275,6 +275,16 @@ html, body {
     opacity: 0.8;
 }
 
+.kontrol-button.aktif {
+    background-color: #28a745; /* Hijau */
+    color: white;
+}
+
+.kontrol-button.nonaktif {
+    background-color: #dc3545; /* Merah */
+    color: white;
+}
+
 /* Manual Kontrol Pakan */
 .manual-kontrol-container {
     background: #ffcccc;

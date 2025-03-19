@@ -1,8 +1,10 @@
 function toggleStatus(button) {
     if (button.classList.contains("nonaktif")) {
         button.classList.remove("nonaktif");
+        button.classList.add("aktif");
         button.innerText = "AKTIF";
     } else {
+        button.classList.remove("aktif");
         button.classList.add("nonaktif");
         button.innerText = "NONAKTIF";
     }
