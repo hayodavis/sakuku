@@ -3,7 +3,9 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/timerayam.js') }}" defer></script>
 <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/control.js') }}" defer></script>
 
 <div class="main-container">
     <!-- Bagian Kiri -->
@@ -20,36 +22,81 @@
         </div>
     </div>
 
-    <!-- Bagian Kanan -->
-    <div class="right-section">
-        <div class="card">
+    <!-- Bagian Tengah -->
+    <div class="middle-section">
+        <div class="card kondisi-ayam-container">
             <h3>Kondisi Ayam</h3>
             <div class="kondisi-ayam">
-                <p class="ayam-sehat">🐔 Ayam Sehat: <span id="ayamSehat">7</span> ekor</p>
-                <p class="ayam-sakit">🤒 Ayam Sakit: <span id="ayamSakit">8</span> ekor</p>
+                <div class="kondisi-item ayam-sehat">
+                    <span class="emoji">🐔</span> <span style="color: green;">Ayam Sehat: <span id="ayamSehat">7</span> ekor</span>
+                </div>
+                <div class="kondisi-item ayam-sakit">
+                    <span class="emoji">🤒</span> <span style="color: red;">Ayam Sakit: <span id="ayamSakit">8</span> ekor</span>
+                </div>
             </div>
             <h2 id="totalAyam">15 EKOR</h2>
         </div>
 
-        <div class="card jadwal-pakan">
+        <div class="kontrol-pakan-container">
             <h3>Kontrol Pakan Otomatis</h3>
-            <p>07:00 [ 2 Kg ] <span class="status normal">AKTIF</span></p>
-            <p>12:00 [ 1 Kg ] <span class="status normal">AKTIF</span></p>
-            <p>17:00 [ 2 Kg ] <span class="status normal">AKTIF</span></p>
+            <div class="kontrol-pakan">
+                <div class="kontrol-item">
+                    <span class="timer-icon">⏰</span>
+                    <span>07:00 [ 2 Kg ]</span>
+                    <button class="kontrol-button" onclick="toggleStatus(this)">AKTIF</button>
+                </div>
+                <div class="kontrol-item">
+                    <span class="timer-icon">⏰</span>
+                    <span>12:00 [ 1 Kg ]</span>
+                    <button class="kontrol-button" onclick="toggleStatus(this)">AKTIF</button>
+                </div>
+                <div class="kontrol-item">
+                    <span class="timer-icon">⏰</span>
+                    <span>17:00 [ 2 Kg ]</span>
+                    <button class="kontrol-button" onclick="toggleStatus(this)">AKTIF</button>
+                </div>
+            </div>
         </div>
 
-        <div class="card manual-kontrol">
-            <h3>Manual Kontrol Pakan</h3>
-            <label><input type="checkbox"> 1 Kilogram</label>
-            <label><input type="checkbox"> 2 Kilogram</label>
-            <label><input type="checkbox"> 5 Kilogram</label>
-            <button onclick="beriMakan()">Beri Makan Sekarang!</button>
+        <div class="manual-kontrol-container">
+            <h3>🐔 Manual Kontrol Pakan</h3>
+            <div class="manual-kontrol-options">
+                <label><input type="checkbox" value="1"> 🍚 1 Kg</label>
+                <label><input type="checkbox" value="2"> 🍚 2 Kg</label>
+                <label><input type="checkbox" value="5"> 🍚 5 Kg</label>
+            </div>
+            <button class="beri-makan-btn">🍗 Beri Makan Sekarang!</button>
         </div>
 
-        <div class="card persediaan-pakan">
-            <h3>Persediaan Pakan</h3>
-            <p id="sisaPakan">Tersisa 15 Kilogram</p>
-            <h2>30%</h2>
+        <div class="persediaan-pakan-container">
+            <h3>🐔 Persediaan Pakan</h3>
+            <p>Tersisa <span id="sisa-pakan">15</span> Kilogram</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar" style="width: 30%;">30%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bagian Kanan -->
+    <div class="right-section">
+        <div class="device-control">
+            <h3>Kontrol Perangkat</h3>
+            <div class="device">
+                <h4>🌀 Kipas</h4>
+                <button class="toggle-btn" id="kipas-btn">ON</button>
+            </div>
+            <div class="device">
+                <h4>💦 Fogging</h4>
+                <button class="toggle-btn" id="fogging-btn">ON</button>
+            </div>
+            <div class="device">
+                <h4>💡 Lampu</h4>
+                <button class="toggle-btn" id="lampu-btn">ON</button>
+            </div>
+            <div class="device">
+                <h4>🚿 Sprinkler</h4>
+                <button class="toggle-btn" id="sprinkler-btn">ON</button>
+            </div>
         </div>
     </div>
 </div>

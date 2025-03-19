@@ -7,14 +7,14 @@ body {
     padding: 0;
 }
 
-/* Header */
+/* Header lebih compact */
 .header {
     background-color: #000000; /* Warna hitam */
     color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 40px; /* Tambah padding agar lebih naik */
+    padding: 10px 20px; /* Kurangi padding agar lebih ringkas */
 }
 
 /* Bagian kiri header */
@@ -24,20 +24,20 @@ body {
 }
 
 .logo {
-    height: 60px;
-    margin-right: 15px;
+    height: 40px; /* Perkecil tinggi logo */
+    margin-right: 10px; /* Kurangi margin */
 }
 
 .title h1 {
     color: #FFAE34; /* Warna oranye */
     margin: 0;
-    font-size: 26px; /* Ukuran font diperbesar */
-    font-weight: 700; /* Tebalkan font */
+    font-size: 20px; /* Perkecil font agar compact */
+    font-weight: 700;
     line-height: 1.2;
 }
 
 .title p {
-    font-size: 16px;
+    font-size: 14px; /* Kurangi font size */
     margin: 0;
     line-height: 1.2;
 }
@@ -48,41 +48,41 @@ body {
 }
 
 .header-right h1 {
-    color: #FFAE34; /* Warna oranye */
+    color: #FFAE34;
     margin: 0;
-    font-size: 26px; /* Ukuran font diperbesar */
-    font-weight: 700; /* Tebalkan font */
+    font-size: 20px; /* Perkecil font agar compact */
+    font-weight: 700;
     line-height: 1.2;
 }
 
 .header-right p {
-    font-size: 16px;
+    font-size: 14px;
     margin: 0;
     color: #FFFFFF;
     line-height: 1.2;
 }
 
-/* Navbar */
+/* Navbar lebih ringkas */
 .navbar {
-    background-color: #FF9F4D; /* Warna oranye */
-    padding: 12px 0;
+    background-color: #FF9F4D;
+    padding: 8px 0; /* Kurangi padding */
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 15px; /* Kurangi gap */
 }
 
 .navbar a {
     color: #FFFFFF;
-    font-weight: 700; /* Tebalkan font */
+    font-weight: 700;
     text-decoration: none;
-    font-size: 18px; /* Ukuran font dinaikkan */
-    padding: 10px 18px;
-    letter-spacing: 1px; /* Menambah spasi antar huruf */
+    font-size: 14px; /* Perkecil font agar compact */
+    padding: 6px 12px; /* Kurangi padding */
+    letter-spacing: 0.5px; /* Kurangi spasi antar huruf */
 }
 
 .navbar a:hover {
-    background-color: #FFAE34; /* Warna oranye terang */
-    border-radius: 5px;
+    background-color: #FFAE34;
+    border-radius: 4px; /* Sedikit kurangi radius */
     transition: 0.3s;
 }
 
@@ -91,11 +91,13 @@ body {
     .header {
         flex-direction: column;
         text-align: center;
+        padding: 10px; /* Kurangi lagi padding untuk layar kecil */
     }
 
     .header-left, .header-right {
         text-align: center;
         justify-content: center;
+        margin-bottom: 5px; /* Tambahkan sedikit jarak antar bagian header */
     }
 
     .navbar {

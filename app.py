@@ -5,7 +5,7 @@ import requests
 app = Flask(__name__)
 CORS(app)  # Mengizinkan akses dari frontend
 
-API_BASE_URL = "http://192.168.56.104:5000/api"
+API_BASE_URL = "http://192.168.14.101:5000/api"
 
 def get_sensor_data(endpoint):
     try:

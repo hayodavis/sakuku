@@ -1,160 +1,337 @@
-/* Grid utama untuk tata letak dua kolom */
+/* Mengatur tinggi viewport agar tidak scroll di halaman */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Container utama: 3 kolom */
 .main-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Tiga kolom */
+    gap: 8px; /* Lebih kecil agar compact */
+    height: calc(100vh - 100px); /* Sisakan ruang ~100px untuk header & navbar */
+    padding: 8px;
+    box-sizing: border-box;
+    overflow: hidden; /* Hindari scroll di container utama */
 }
 
-/* Bagian kiri: Grafik dan Kartu Statistik */
+/* Bagian Kiri: Grafik & Kartu Statistik */
 .left-section {
-    flex: 1;
-}
-
-/* Bagian kanan: Kondisi Ayam, Kontrol Pakan, dll. */
-.right-section {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 8px;
+    overflow: auto; /* Jika konten lebih, scroll hanya di kolom ini */
+}
+
+/* Bagian Tengah: Kondisi Ayam, Kontrol Pakan, Manual, Persediaan Pakan */
+.middle-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: auto; /* Jika konten lebih, scroll hanya di kolom ini */
+}
+
+/* Bagian Kanan: Kontrol Perangkat */
+.right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: auto; /* Jika konten lebih, scroll hanya di kolom ini */
 }
 
 /* Grafik Produksi Telur */
 .chart-container {
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
     background: #f9f9f9;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    min-height: 0; /* Agar flexbox tidak memaksa tinggi berlebih */
 }
 
-/* Container Statistik */
+/* Stats Container */
 .stats-container {
-    max-width: 900px;
-    margin: 20px auto;
-    text-align: left;
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .stats-container h2 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
+    margin-bottom: 6px;
     color: #000;
-    margin-bottom: 15px;
 }
 
-/* Grid Statistik */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 6px;
 }
 
-/* Kartu Statistik */
 .card {
     background: #F9F9F9;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    padding: 8px;
     text-align: center;
+    font-size: 14px;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Efek hover */
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.03);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Header kartu */
-.card-header {
-    background: #FFD966;
-    padding: 8px;
-    border-radius: 8px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Warna teks utama */
 .value {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     color: #FFAE34;
-    margin: 10px 0;
+    margin: 6px 0;
 }
 
 /* Status warna */
 .status {
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
 }
 
 .normal {
-    color: green !important;
-    background-color: #DFF2BF !important;
-    border: 2px solid green;
+    color: green;
+    background-color: #DFF2BF;
+    border: 1px solid green;
 }
 
 .high {
-    color: white !important;
-    background-color: red !important;
-    border: 2px solid black !important;
+    color: white;
+    background-color: red;
+    border: 1px solid black;
 }
 
 .low {
-    color: white !important;
-    background-color: #3498db !important;
-    border: 2px solid darkblue;
+    color: white;
+    background-color: #3498db;
+    border: 1px solid darkblue;
 }
 
 .danger {
-    color: white !important;
-    background-color: red !important;
-    border: 2px solid black !important;
+    color: white;
+    background-color: red;
+    border: 1px solid black;
 }
 
-/* Bagian kanan: Kondisi Ayam, Kontrol Pakan, dll. */
+/* Kondisi Ayam, Kontrol Pakan, Manual, Persediaan */
+.kondisi-ayam-container,
+.kontrol-pakan-container,
+.manual-kontrol-container,
+.persediaan-pakan-container {
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.kondisi-ayam-container {
+    background: linear-gradient(135deg, #ffffff, #f8f8f8);
+    border: 1px solid #ddd;
+}
+
+.kondisi-ayam-container:hover {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.kondisi-ayam-container h3,
+.kontrol-pakan-container h3,
+.manual-kontrol-container h3,
+.persediaan-pakan-container h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
 .kondisi-ayam {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 6px;
+}
+
+.kondisi-ayam .emoji {
+    font-size: 2rem;
+    margin-right: 4px;
+}
+
+.total-ayam {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+.kontrol-pakan {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.kontrol-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+}
+
+.kontrol-item .timer-icon {
+    font-size: 1.2rem;
+    margin-right: 4px;
+}
+
+.kontrol-item span {
+    font-size: 14px;
     font-weight: bold;
 }
 
-.ayam-sehat {
-    color: green;
+.kontrol-button {
+    background: #28a745;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.ayam-sakit {
-    color: red;
+.kontrol-button:hover {
+    opacity: 0.8;
 }
 
-.jadwal-pakan {
-    background: #f7d794;
-    padding: 10px;
+.manual-kontrol-options {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.manual-kontrol-options label {
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.beri-makan-btn {
+    background-color: #ff6600;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.beri-makan-btn:hover {
+    background-color: #e65c00;
+}
+
+.persediaan-pakan-container {
+    background: #dff6f0;
+}
+
+.persediaan-pakan-container p {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background: #eeeeee;
     border-radius: 5px;
+    overflow: hidden;
+    height: 18px;
+    margin-top: 6px;
 }
 
-.manual-kontrol {
-    background: #ffcccc;
-    padding: 10px;
-    border-radius: 5px;
+.progress-bar {
+    height: 100%;
+    background: #28a745;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    line-height: 18px;
+    transition: width 0.5s ease-in-out;
 }
 
-.persediaan-pakan {
-    background: #d1f2eb;
+/* Device Control (Kolom Kanan) */
+.device-control {
+    background: #f8f9fa;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 6px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.device-control h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.device {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f5f5f5;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.device h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.toggle-btn {
+    width: 60px;
+    padding: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background: #28a745;
+    color: white;
+    transition: background 0.3s;
+}
+
+.toggle-btn.off {
+    background: #dc3545;
+}
+
+.toggle-btn:hover {
+    opacity: 0.85;
 }
 
 /* Responsif untuk layar kecil */
 @media (max-width: 768px) {
     .main-container {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        height: auto; /* Agar tidak memotong di layar kecil */
+        overflow: auto;
     }
 }
