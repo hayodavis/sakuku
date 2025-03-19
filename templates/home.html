@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<div class="stats-container">
+    <h2>KARTU STATISTIK</h2>
+    <div class="stats-grid">
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">⚗️</span> Suhu Rata - Rata
+            </div>
+            <div class="card-body">
+                <p class="value">27°C</p>
+                <p class="status normal">NORMAL</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">💧</span> Kelembaban
+            </div>
+            <div class="card-body">
+                <p class="value">90%</p>
+                <p class="status high">TINGGI</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">☀️</span> Ammonia
+            </div>
+            <div class="card-body">
+                <p class="value">20ppm</p>
+                <p class="status normal">NORMAL</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">O₂</span> Oksigen
+            </div>
+            <div class="card-body">
+                <p class="value">17.5%</p>
+                <p class="status normal">NORMAL</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">CO₂</span> Karbon Dioksida
+            </div>
+            <div class="card-body">
+                <p class="value">1200ppm</p>
+                <p class="status normal">NORMAL</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">CO</span> Karbon Monosida
+            </div>
+            <div class="card-body">
+                <p class="value">9ppm</p>
+                <p class="status low">RENDAH</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

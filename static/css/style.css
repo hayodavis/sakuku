@@ -1,0 +1,93 @@
+/* Definisikan variabel warna agar mudah diatur */
+:root {
+  --color-orange1: #FFAE34;  /* warna oranye 1 */
+  --color-orange2: #FF9F4D;  /* warna oranye 2 */
+  --color-black: #000000;    /* warna hitam */
+  --color-white: #FFFFFF;    /* warna putih */
+}
+
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+/* HEADER */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-black);
+  padding: 10px 20px;
+}
+
+/* Bagian kiri header */
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+/* Judul Sistem */
+.system-title h1 {
+  font-size: 1.5rem;
+  color: var(--color-orange1);
+  margin-bottom: 5px;
+}
+.system-title p {
+  font-size: 0.9rem;
+  color: var(--color-white);
+}
+
+/* Bagian kanan header */
+.header-right {
+  text-align: right;
+  color: var(--color-white);
+}
+.header-right h2 {
+  margin-bottom: 5px;
+  color: var(--color-orange2);
+}
+
+/* NAVIGATION */
+.nav-bar {
+  background-color: var(--color-orange2);
+  padding: 10px 20px;
+}
+
+.nav-bar ul {
+  list-style: none;
+  display: flex;
+}
+
+.nav-bar li {
+  margin-right: 20px;
+}
+
+.nav-bar a {
+  text-decoration: none;
+  color: var(--color-white);
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.nav-bar a:hover {
+  color: var(--color-black);
+}
+
+/* MAIN CONTENT */
+.main-content {
+  padding: 20px;
+}
