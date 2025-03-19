@@ -16,6 +16,11 @@ def get_sensor_data(endpoint):
 
 @app.route("/")
 def home():
+    return render_template("home.html")  # Tidak perlu mengirim data ke template
+
+@app.route("/api/data")
+def get_data():
+    """ Mengembalikan data sensor dalam format JSON untuk diambil oleh JavaScript """
     data = {
         "suhu": get_sensor_data("suhu"),
         "kelembapan": get_sensor_data("kelembapan"),
@@ -24,7 +29,7 @@ def home():
         "karbondioksida": get_sensor_data("karbondioksida"),
         "karbonmonoksida": get_sensor_data("karbonmonoksida"),
     }
-    return render_template("home.html", data=data)
+    return jsonify(data)  # JavaScript akan mengambil data ini setiap 2 detik
 
 if __name__ == "__main__":
     app.run(debug=True)

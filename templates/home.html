@@ -2,28 +2,12 @@
 
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<script src="{{ url_for('static', filename='js/script.js') }}" defer></script> <!-- Panggil script.js -->
 
 <div class="stats-container">
     <h2>KARTU STATISTIK</h2>
-    <div class="stats-grid">
-
-        {% set icons = {'suhu': '⚗️', 'kelembapan': '💧', 'amonia': '☀️', 'oksigen': 'O₂', 'karbondioksida': 'CO₂', 'karbonmonoksida': 'CO'} %}
-        {% set titles = {'suhu': 'Suhu Rata - Rata', 'kelembapan': 'Kelembaban', 'amonia': 'Ammonia', 'oksigen': 'Oksigen', 'karbondioksida': 'Karbon Dioksida', 'karbonmonoksida': 'Karbon Monosida'} %}
-
-        {% for key, value in data.items() %}
-        <div class="card">
-            <div class="card-header">
-                <span class="icon">{{ icons[key] }}</span> {{ titles[key] }}
-            </div>
-            <div class="card-body">
-                <p class="value">{{ value.kadar }}</p>
-                <p class="status {% if value.status == 'TINGGI' %}high{% elif value.status == 'RENDAH' %}low{% else %}normal{% endif %}">
-                    {{ value.status }}
-                </p>
-            </div>
-        </div>
-        {% endfor %}
-
+    <div class="stats-grid" id="statsGrid">
+        <!-- Kartu akan di-generate oleh JavaScript -->
     </div>
 </div>
 

@@ -53,19 +53,29 @@
 .status {
     font-size: 16px;
     font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 /* Status warna */
 .normal {
     color: green;
+    background-color: #DFF2BF;
 }
 
 .high {
-    color: red;
+    color: orange;
+    background-color: #FFE59A;
 }
 
 .low {
-    color: orange;
+    color: blue;
+    background-color: #AEEEEE;
+}
+
+.danger {
+    color: white;
+    background-color: red;
 }
 
 /* Responsif */
