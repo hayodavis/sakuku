@@ -59,23 +59,27 @@
 
 /* Status warna */
 .normal {
-    color: green;
-    background-color: #DFF2BF;
+    color: green !important;
+    background-color: #DFF2BF !important;
+    border: 2px solid green;
 }
 
 .high {
-    color: orange;
-    background-color: #FFE59A;
+    color: white !important;
+    background-color: #FF5733 !important; /* Merah terang */
+    border: 2px solid darkred;
 }
 
 .low {
-    color: blue;
-    background-color: #AEEEEE;
+    color: white !important;
+    background-color: #3498db !important; /* Biru lebih kontras */
+    border: 2px solid darkblue;
 }
 
 .danger {
-    color: white;
-    background-color: red;
+    color: white !important;
+    background-color: red !important;
+    border: 2px solid black !important;
 }
 
 /* Responsif */
