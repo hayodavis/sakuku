@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Data Ayam{% endblock %}
+
+{% block head %}
+<!-- Link CSS khusus untuk halaman ayam -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ayam/indexayam.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="ayam-container">
+    <h1 class="ayam-title">Data Ayam</h1>
+    <div class="ayam-header">
+        <a href="{{ url_for('ayam_bp.tambah') }}" class="ayam-btn tambah-btn">Tambah Ayam</a>
+    </div>
+    <table class="ayam-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Usia (Minggu)</th>
+            <th>Berat (kg)</th>
+            <th>Kondisi</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for a in ayam_list %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.nama }}</td>
+            <td>{{ a.usia }}</td>
+            <td>{{ a.berat }}</td>
+            <td class="kondisi-{{ a.kondisi|lower }}">
+                {{ a.kondisi }}
+            </td>
+            <td>
+                <a href="{{ url_for('ayam_bp.edit', id=a.id) }}" class="ayam-btn edit-btn">Edit</a>
+                <form action="{{ url_for('ayam_bp.hapus', id=a.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="ayam-btn hapus-btn">Hapus</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Bagian Pagination -->
+    <div class="pagination-container">
+        <ul class="pagination">
+            {% if pagination.has_prev %}
+            <li><a href="{{ url_for('ayam_bp.index', page=pagination.prev_num) }}">&laquo; Prev</a></li>
+            {% else %}
+            <li class="disabled"><span>&laquo; Prev</span></li>
+            {% endif %}
+
+            {# iter_pages() -> Menghasilkan nomor halaman #}
+            {% for p in pagination.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+            {% if p %}
+            {% if p == pagination.page %}
+            <li class="active"><span>{{ p }}</span></li>
+            {% else %}
+            <li><a href="{{ url_for('ayam_bp.index', page=p) }}">{{ p }}</a></li>
+            {% endif %}
+            {% else %}
+            <li class="dots"><span>…</span></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if pagination.has_next %}
+            <li><a href="{{ url_for('ayam_bp.index', page=pagination.next_num) }}">Next &raquo;</a></li>
+            {% else %}
+            <li class="disabled"><span>Next &raquo;</span></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

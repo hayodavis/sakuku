@@ -1,6 +1,9 @@
 from flask import Flask, render_template, jsonify
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from extensions import db
 import requests
+import os
 
 app = Flask(__name__)
 CORS(app)  # Mengizinkan akses dari frontend
@@ -39,5 +42,23 @@ def get_telur():
     telur_data = get_sensor_data("telur")
     return jsonify(telur_data)
 
+# Konfigurasi database
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(BASE_DIR, 'database.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{db_path}"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'rahasia'
+
+# Inisialisasi SQLAlchemy
+db.init_app(app)
+
+# Impor blueprint setelah inisialisasi db
+from routes.ayam import ayam_bp
+app.register_blueprint(ayam_bp, url_prefix='/ayam')
+
 if __name__ == "__main__":
+    # Buat database jika belum ada
+    if not os.path.exists(db_path):
+        with app.app_context():
+            db.create_all()
     app.run(debug=True)

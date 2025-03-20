@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Tambah Data Ayam{% endblock %}
+
+{% block head %}
+<!-- Link CSS khusus untuk halaman tambah ayam -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ayam/tambahayam.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="tambah-container">
+    <h1 class="tambah-title">Tambah Data Ayam</h1>
+
+    <form method="POST" class="tambah-form">
+        <label>Nama Ayam:</label>
+        <input type="text" name="nama" required>
+
+        <label>Usia (Minggu):</label>
+        <input type="number" name="usia" required>
+
+        <label>Berat (kg):</label>
+        <input type="number" step="0.1" name="berat" required>
+
+        <label>Kondisi:</label>
+        <select name="kondisi" required>
+            <option value="Sehat">Sehat</option>
+            <option value="Sakit">Sakit</option>
+        </select>
+
+        <button type="submit" class="btn simpan-btn">Simpan</button>
+    </form>
+
+    <a href="{{ url_for('ayam_bp.index') }}" class="btn kembali-btn">Kembali</a>
+</div>
+{% endblock %}
