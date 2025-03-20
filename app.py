@@ -1,4 +1,5 @@
 from flask import Flask, render_template, jsonify
+from routes.ayam import ayam_bp, Ayam
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from extensions import db
@@ -10,6 +11,7 @@ CORS(app)  # Mengizinkan akses dari frontend
 
 API_BASE_URL = "http://192.168.57.73:5000/api"
 
+
 def get_sensor_data(endpoint):
     try:
         response = requests.get(f"{API_BASE_URL}/{endpoint}")
@@ -19,9 +21,20 @@ def get_sensor_data(endpoint):
         return {"kadar": "N/A", "status": "Error"}
     return {"kadar": "N/A", "status": "Error"}
 
+
+# @app.route("/")
+# def home():
+#     return render_template("home.html")  # Tidak perlu mengirim data ke template
+
 @app.route("/")
 def home():
-    return render_template("home.html")  # Tidak perlu mengirim data ke template
+    # Contoh: ambil data ayam dari database
+    ayam_sehat = Ayam.query.filter_by(kondisi='Sehat').count()
+    ayam_sakit = Ayam.query.filter_by(kondisi='Sakit').count()
+    total_ayam = ayam_sehat + ayam_sakit
+
+    return render_template("home.html", ayam_sehat=ayam_sehat, ayam_sakit=ayam_sakit, total_ayam=total_ayam)
+
 
 @app.route("/api/data")
 def get_data():
@@ -36,11 +49,13 @@ def get_data():
     }
     return jsonify(data)  # JavaScript akan mengambil data ini setiap 2 detik
 
+
 @app.route("/api/telur")
 def get_telur():
     """Mengambil data produksi telur dari API eksternal"""
     telur_data = get_sensor_data("telur")
     return jsonify(telur_data)
+
 
 # Konfigurasi database
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -54,6 +69,7 @@ db.init_app(app)
 
 # Impor blueprint setelah inisialisasi db
 from routes.ayam import ayam_bp
+
 app.register_blueprint(ayam_bp, url_prefix='/ayam')
 
 if __name__ == "__main__":

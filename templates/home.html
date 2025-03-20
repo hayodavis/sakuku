@@ -32,14 +32,17 @@
             <div class="kondisi-ayam">
                 <div class="kondisi-item ayam-sehat">
                     <span class="emoji">🐔</span>
-                    <span style="color: green;">Ayam Sehat: <span id="ayamSehat">7</span> ekor</span>
+                    <!--                    <span style="color: green;">Ayam Sehat: <span id="ayamSehat">7</span> ekor</span>-->
+                    <span style="color: green;">Ayam Sehat: <span id="ayamSehat">{{ ayam_sehat }}</span> ekor</span>
                 </div>
                 <div class="kondisi-item ayam-sakit">
                     <span class="emoji">🤒</span>
-                    <span style="color: red;">Ayam Sakit: <span id="ayamSakit">8</span> ekor</span>
+                    <!--                    <span style="color: red;">Ayam Sakit: <span id="ayamSakit">8</span> ekor</span>-->
+                    <span style="color: red;">Ayam Sakit: <span id="ayamSakit">{{ ayam_sakit }}</span> ekor</span>
                 </div>
             </div>
-            <h2 id="totalAyam">15 EKOR</h2>
+<!--            <h2 id="totalAyam">15 EKOR</h2>-->
+            <h2 id="totalAyam">{{ total_ayam }} EKOR</h2>
         </div>
 
         <!-- Kontrol Pakan Otomatis -->
