@@ -57,9 +57,46 @@ python app.py
 Akses aplikasi melalui http://127.0.0.1:5000/
 
 <h2>📡 API Endpoint</h2>
-<tr>
-  <th>Endpoint</th>
-  <th>Method</th>
-  <th>Deskripsi</th>
-</tr>
+<table>
+  <tr>
+    <th>Endpoint</th>
+    <th>Method</th>
+    <th>Deskripsi</th>
+  </tr>
+  <tr>
+    <td>/api/data</td>
+    <td>GET</td>
+    <td>Mengambil data dari sensor</td>
+  </tr>
+  <tr>
+    <td>/api/telur</td>
+    <td>GET</td>
+    <td>Mengambil data produksi telur</td>
+  </tr>
+  <tr>
+    <td>/ayam</td>
+    <td>GET</td>
+    <td>Mengelola data ayam</td>
+  </tr>
+</table>
 
+<h2>🤝 Kontribusi</h2>
+<pre>
+  Kami sangat terbuka terhadap kontribusi dari siapa saja! Ikuti langkah berikut untuk berkontribusi:
+  1. Fork repository ini
+  2. Buat branch baru: git checkout -b feature-xyz
+  3. Lakukan perubahan dan commit: git commit -m "Menambahkan fitur XYZ"
+  4. Push ke branch Anda: git push origin feature-xyz
+  5. Buat Pull Request ke branch main
+</pre>
+
+<h2>📜 Lisensi</h2>
+Proyek ini dirilis di bawah lisensi MIT. Silakan gunakan dan kembangkan sesuai kebutuhan Anda!
+
+<h2>📞 Kontak</h2>
+Jika Anda memiliki pertanyaan atau saran, jangan ragu untuk menghubungi:
+<ol>
+  <li>Email: davis.fandi@gmail.com</li>
+</ol>
+
+<b>Happy Coding! 🚀</b>
