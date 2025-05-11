@@ -1,4 +1,4 @@
-<h1> 🐔 Smart Poultry Monitoring System </h1>
+<h1> 🐔 Sistem Awas Kandang Unggas </h1>
 
 Sistem ini adalah aplikasi berbasis web yang digunakan untuk memantau kondisi peternakan ayam secara real-time menggunakan sensor yang terhubung dengan Raspberry Pi Pico W.
 
